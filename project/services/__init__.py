@@ -1,3 +1,3 @@
-from .genres_service import GenresService
+from .genres_service import GenreService
 
-__all__ = ["GenresService"]
+__all__ = ["GenreService"]
