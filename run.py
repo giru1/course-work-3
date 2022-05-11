@@ -14,4 +14,7 @@ def shell():
     return {
         "db": db,
         "Genre": Genre,
+        "Director": Director,
+        "Movie": Movie,
+        "User": User,
     }
