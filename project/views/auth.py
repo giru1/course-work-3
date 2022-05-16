@@ -5,7 +5,7 @@ from flask_restx import Resource, Namespace
 auth_ns = Namespace('auth')
 
 
-@auth_ns.route('/register')
+@auth_ns.route('/register/')
 class AuthRegisterView(Resource):
     def post(self):
         print(request.json)
