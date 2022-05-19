@@ -6,6 +6,9 @@ class UserService(BaseService):
     def __init__(self, dao: UserDAO):
         self.dao = dao
 
+    def get_by_username(self, data):
+        pass
+
     def get_one(self, bid):
         return self.dao.get_one(bid)
 

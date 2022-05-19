@@ -10,6 +10,9 @@ class UserDAO(BaseDAO):
     def __init__(self, session):
         self.session = session
 
+    def get_by_username(self, data):
+        pass
+
     def get_one(self, bid):
         return self.session.query(User).get(bid)
 

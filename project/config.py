@@ -9,9 +9,9 @@ class BaseConfig:
     JSON_AS_ASCII = False
 
     ITEMS_PER_PAGE = 12
-
+    HASH_NAME = 'sha256'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
+    JWT_ALGORITHM = 'HS256'
     TOKEN_EXPIRE_MINUTES = 15
     TOKEN_EXPIRE_DAYS = 130
 
@@ -30,3 +30,12 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(
         os.path.dirname(BASEDIR), "project.db"
     )
+
+
+# HASH_SALT: str = 'new_salt'
+# HASH_NAME: str = 'sha256'
+# HASH_GEN_ITERATIONS: int = 1000
+# JWT_ALGORITHM = 'HS256'
+# SECRET_HERE = '249y823r9v8238r9u'
+
+# print(BaseConfig.PWD_HASH_SALT)

@@ -5,11 +5,11 @@ from project.implemented import user_service
 auth_ns = Namespace('auth')
 
 
-@auth_ns.route('/register/')
+@auth_ns.route('/register')
 class AuthRegisterView(Resource):
     def post(self):
         print(request.json)
-        user_service.register(request.json)
+        user_service.create(request.json)
         return {}, 201
 
 
