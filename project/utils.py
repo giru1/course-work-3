@@ -7,10 +7,10 @@ from typing import Dict
 import jwt
 from flask import request
 from flask_restx import abort
-from setup_db import db
-from config import BaseConfig
-from dao.user import UserDAO
-from services.user_service import UserService
+from project.setup_db import db
+from project.config import BaseConfig
+from project.dao.user import UserDAO
+from project.services.user_service import UserService
 
 user_dao = UserDAO(session=db.session)
 user_service = UserService(dao=user_dao)
@@ -115,9 +115,9 @@ def auth_required(func):
     def wrapper(*args, **kwargs):
         token = get_token_headers(request.headers)
         decoded_token = decode_token(token)
-        print(decoded_token['username'])
-        print(decoded_token)
-        print(type(decoded_token))
+        # print(decoded_token['username'])
+        # print(decoded_token)
+        # print(type(decoded_token))
         if not user_service.get_by_username(decoded_token.get('username')):
             abort(401)
 
@@ -143,4 +143,4 @@ def admin_access_required(func):
     return wrapper
 
 
-print(get_hashed_pass('542525'))
+# print(get_hashed_pass('542525'))

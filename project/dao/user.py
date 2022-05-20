@@ -20,10 +20,10 @@ class UserDAO(BaseDAO):
         return self.session.query(User).all()
 
     def create(self, user_d):
-        ent = User(**user_d)
-        self.session.add(ent)
+        # print(user_d)
+        user = User(**user_d)
+        self.session.add(user)
         self.session.commit()
-        return ent
 
     def delete(self, rid):
         user = self.get_one(rid)

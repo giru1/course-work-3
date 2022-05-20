@@ -15,10 +15,11 @@ class UserService(BaseService):
     def get_all(self):
         return self.dao.get_all()
 
-    def create(self, user_d):
+    def create(self, user_d: dict):
+        # print(user_d)
         return self.dao.create(user_d)
 
-    def update(self, user_d):
+    def update(self, user_d: dict):
         self.dao.update(user_d)
         return self.dao
 

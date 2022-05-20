@@ -2,6 +2,7 @@ from flask_restx import Resource, Namespace
 
 from project.schemas.director import DirectorSchema
 from project.implemented import director_service
+from project.setup_db import db
 
 directors_ns = Namespace('directors')
 
