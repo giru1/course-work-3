@@ -13,6 +13,7 @@ class AuthRegisterView(Resource):
 @auth_ns.route('/login')
 class AuthLoginView(Resource):
     def post(self):
+        # print(request.json)
         return auth_service.login(request.json)
 
     def put(self):

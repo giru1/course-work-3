@@ -29,11 +29,12 @@ class AuthService:
                 'password': get_hashed_pass(data['password'])
             }
 
-        # print(user_data)
         return user_dao.create(user_data)
 
     def login(self, data: dict):
+
         user_data = self.user_service.get_by_username(data['username'])
+        
         if user_data is None:
             abort(401, message='user not found')
 
