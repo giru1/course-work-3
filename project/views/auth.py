@@ -1,6 +1,8 @@
 from flask import request
 from flask_restx import Resource, Namespace
+
 from project.implemented import auth_service
+
 auth_ns = Namespace('auth')
 
 
@@ -13,8 +15,7 @@ class AuthRegisterView(Resource):
 @auth_ns.route('/login')
 class AuthLoginView(Resource):
     def post(self):
-        # print(request.json)
         return auth_service.login(request.json)
 
     def put(self):
-        return auth_service.login(request.json)
+        return auth_service.get_new_token(request.json['refresh_token'])

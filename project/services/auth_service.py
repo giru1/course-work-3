@@ -32,8 +32,7 @@ class AuthService:
         return user_dao.create(user_data)
 
     def login(self, data: dict):
-
-        user_data = self.user_service.get_by_username(data['username'])
+        user_data = self.user_service.get_by_username(data['email'])
         
         if user_data is None:
             abort(401, message='user not found')
@@ -44,19 +43,20 @@ class AuthService:
 
         tokens: dict = generation_tokens(
             {
-                'username': data['username'],
-                'role': user_data.role
+                'email': data['email']
             }
         )
         return tokens
 
-    # def get_new_token(self, refresh_token: str):
-    #     decoded_token = decode_token(refresh_token, refresh_token=True)
-    #
-    #     token = generation_tokens(
-    #         data={
-    #             'username': decoded_token['username'],
-    #             'role': decoded_token['role']
-    #         }
-    #     )
-    #     return token
+    def get_new_token(self, refresh_token: str):
+        print(refresh_token)
+        print(1111)
+        decoded_token = decode_token(refresh_token, refresh_token=True)
+
+        token = generation_tokens(
+            data={
+                'email': decoded_token['email']
+            }
+        )
+        print(2222)
+        return token
