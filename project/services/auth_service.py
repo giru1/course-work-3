@@ -49,8 +49,7 @@ class AuthService:
         return tokens
 
     def get_new_token(self, refresh_token: str):
-        print(refresh_token)
-        print(1111)
+
         decoded_token = decode_token(refresh_token, refresh_token=True)
 
         token = generation_tokens(
@@ -58,5 +57,5 @@ class AuthService:
                 'email': decoded_token['email']
             }
         )
-        print(2222)
+
         return token
