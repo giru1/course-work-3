@@ -16,7 +16,7 @@ class UserDAO(BaseDAO):
         return self.session.query(User).filter(User.email == username).first()
 
     def get_one(self, bid):
-        return self.session.query(User).get(bid)
+        return self.session.query(User).filter(User.id == bid).first()
 
     def get_all(self):
         return self.session.query(User).all()
@@ -32,9 +32,6 @@ class UserDAO(BaseDAO):
         self.session.delete(user)
         self.session.commit()
 
-    def update(self, user_d):
-        user = self.get_one(user_d.get("id"))
-        user.name = user_d.get("name")
-
-        self.session.add(user)
+    def update(self, data, user_id):
+        self.session.query(User).filter(User.id == user_id).update(data)
         self.session.commit()
