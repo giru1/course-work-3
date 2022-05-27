@@ -1,7 +1,5 @@
 from project.dao.models.genre import Genre
-from typing import Dict, Any
 
-from marshmallow import ValidationError
 
 from project.dao.base import BaseDAO
 

@@ -43,10 +43,10 @@ class UserView(Resource):
         return "", 204
 
 
-@users_ns.route("/password")
+@users_ns.route("/<user_id>/password")
 class PasswordResetView(Resource):
-    @auth_required
-    def put(self):
-        user_service.update_password(request.json)
+    # @auth_required
+    def put(self, user_id):
+        print(request.json)
+        user_service.reset_password(user_id, request.json)
         return "OK", 200
-

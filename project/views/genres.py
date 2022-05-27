@@ -2,6 +2,7 @@ from flask_restx import abort, Namespace, Resource
 
 from project.exceptions import ItemNotFound
 from project.services.genres_service import GenreService
+from project.schemas.genre import GenreSchema
 from project.setup_db import db
 
 genres_ns = Namespace("genres")
@@ -11,8 +12,8 @@ genres_ns = Namespace("genres")
 class GenresView(Resource):
     @genres_ns.response(200, "OK")
     def get(self):
-        """Get all genres"""
-        return GenreService(db.session).get_all()
+        all_genres = GenreService.get_all()
+        return GenreSchema.dump(all_genres, many=True), 200
 
 
 @genres_ns.route("/<int:genre_id>")

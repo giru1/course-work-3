@@ -1,3 +1,4 @@
+import password as password
 from flask import request, abort
 import base64
 import hashlib
@@ -30,15 +31,17 @@ class UserService(BaseService):
     def delete(self, rid):
         self.dao.delete(rid)
 
-    def reset_password(self, data):
-        if 'Authorization' not in data.headers:
-            abort(401)
+    def reset_password(self, user_id, data):
 
         old_password = data.get('old_password')
         new_password = data.get('new_password')
 
-        if old_password != new_password:
-            self.dao.update(get_hashed_pass(new_password))
+        if old_password == new_password and get_hashed_pass(old_password) == get_hashed_pass(User.password):
+            return f'Old password or new password no correct'
+        password_hash = {
+            "password": get_hashed_pass(new_password)
+        }
+        self.dao.update(password_hash, user_id)
 
 
 def get_hashed_pass(password: str) -> str:
